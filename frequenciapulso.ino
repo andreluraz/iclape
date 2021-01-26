@@ -13,7 +13,7 @@ Chrono crono(Chrono::MICROS); // iniciando cronometro, que conta o tempo em micr
 void setup() {
   // put your setup code here, to run once:
   pinMode(pino, INPUT);
-  Serial.begin(9600); // "ativando" o monitor serial
+  Serial.begin(9600); // ativando o monitor serial
   attachInterrupt(digitalPinToInterrupt(pino), regtempo, RISING);
   contador = 0;
 }
@@ -21,9 +21,9 @@ void loop() {
    // put your main code here, to run repeatedly
     if (tempos[1] > tempos[0]){
       tempoT = tempos[1] - tempos[0];
-      Serial.println(1000000./tempoT); //printando a frequencia]
+      Serial.println(1000000./tempoT); //printando a frequencia
       Serial.println(contador);
-      contador +=1; // 
+      contador +=1;  
     }
     else{
       tempoT = tempos[0] - tempos[1];
