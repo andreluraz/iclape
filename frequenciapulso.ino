@@ -5,9 +5,9 @@
 #define pino 2
 
 volatile unsigned long tempos[3] = {0,0}; // criando lista que guardara os tempos de pulsos consecutivos
-volatile int cont = 0;
-volatile unsigned long tempoT;
-volatile int contador;
+volatile int cont = 0; //variavel auxiliar que sera utilizada na funcao regtempo
+volatile unsigned long tempoT; // variavel que guardara a diferenca de tempo entre pulsos
+volatile int contador; // variavel que guarda o indice do pulso, ou seja, em qual pulso esta
 Chrono crono(Chrono::MICROS); // iniciando cronometro, que conta o tempo em microssegundos
 
 void setup() {
@@ -23,7 +23,7 @@ void loop() {
       tempoT = tempos[1] - tempos[0];
       Serial.println(1000000./tempoT); //printando a frequencia]
       Serial.println(contador);
-      contador +=1;
+      contador +=1; // 
     }
     else{
       tempoT = tempos[0] - tempos[1];
@@ -34,8 +34,8 @@ void loop() {
 }
 void regtempo(){
     tempos[cont] = crono.elapsed(); // guardando o tempo que o cronometro contou nesse momento
-    cont += 1;
-    if (cont >1){
+    cont += 1; // a variavel cont serve para limitar o indice do array tempos, que nao pode passar de 1
+    if (cont >1){ // pois esse array contem apenas 2 espaços. Logo, os indices devem ficar limitados em 0 e 1
     cont = 0;
     }
     else {}
